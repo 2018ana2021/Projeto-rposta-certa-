@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Resposta certa?</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fraunces:wght@200&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="font/material-icons.css"> 
+</head>
+<body> 
+
+    <section class= "inicio"><!--inicio da section inicio-->
+      <div class="campo">
+                      <table class="icones">
+                        <tr>
+                          <th><button class="material-icons config">settings</button></th>
+                          <th><button class="material-icons som">volume_off</button></th>
+                        </tr>
+                      </table>
+                            
+                               
+                         
+        <p><img class="logo" src="img/logo.png"></p>        
+        <h1>Resposta Certa?</h1>         
+          <p><button class="btn-inicio">Iniciar</button></p>
+      </div>
+
+    </section><!--fim da section inicio-->
+
+        <section class= "menu"><!--inicio da section menu-->
+          <div class="campo">
+            <table class="icones">
+              <tr>
+                <th><button class="material-icons config">settings</button></th>
+                <th><button class="material-icons som">volume_off</button></th>
+              </tr>
+            </table>
+                <h1>Escolha um tema</h1>
+                  <div class="table">
+                    <ul>
+                      <li>
+                        <p><button class="btn-geografia"><a href="geo.html">Geografia</button></p></a>
+                      </li>
+                      <li>
+                        <p><button class="btn-historia"><a href="hist.html">História</button></p></a>
+                      </li>
+                      <li>
+                        <p><button class="btn-artes"><a href="art.html">Artes</button></p></a>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li>
+                        <p><button class="btn-matematica"><a href="mat.html">Matemática</button></p></a>
+                      </li>
+                      <li>
+                        <p><button class="btn-ciencias"><a href="cien.html">Ciências</button></p></a>
+                      </li>
+                      <li>
+                        <p><button class="btn-portugues"><a href="port.html">Português</button></p></a>
+                      </li>
+                    </ul>
+
+                    <ul>
+                      <li colspan="2" >
+                        <p><button class="btn-misto"><a href="misto.html">Misto</button></p></a>
+                      </li>
+                    </ul>
+
+                  </div>
+
+          </div>
+        </section>
+
+
+
+
+  
+      <section class="jogo"><!--inicio  da section jogo-->
+          <header>
+            <h2 class="pontos">Pontos:<span class="pontos">0</span></h2>
+            <h2 class="tempo"><span class="tempo">0</span>s</h2>
+          </header>
+
+          <div class="campo">
+              <div class="pomo"><span></span></div>
+          </div>
+      </section><!--fim da sectionjogo -->
+
+        <section class="pontuacao"><!--inicio  da section pontos-->
+          <div class="card" style="width: 26rem;">
+            <img src="img/final.gif" class="card-img-top" alt="30px">
+            <div class="card-body">
+              <h1 class="card-title">Parabens</h1>
+              <p class="card-text">você conclui o jogo em  <span> 0</span>s</p>
+              <button class="btn btn-primary">jogar novamente</button> 
+            </div>
+          </div>
+        </section><!--fim da section pontos -->
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+  
+
+      musicaTemaClassico = new Audio("musica/Bridgerton.mp3");
+    
+//configurando o botão do audio tela inicial
+    $("section.inicio button.som").on("click", function(){
+
+      textoDoBotao = $(this).text();
+      if(textoDoBotao =="volume_off"){
+        musicaTemaClassico.play();
+        $(this).text("music_note")
+      }else{
+        musicaTemaClassico.pause();
+        $(this).text("volume_off");
+      }
+     });
+
+//configurando o botão do audio tela menu
+$("section.menu button.som").on("click", function(){
+
+textoDoBotao = $(this).text();
+if(textoDoBotao =="volume_off"){
+  musicaTemaClassico.play();
+  $(this).text("music_note")
+}else{
+  musicaTemaClassico.pause();
+  $(this).text("volume_off");
+}
+});
+
+// a entrada da tela jogo
+  $("section.inicio button.btn-inicio").on("click", function(){
+    $("section").hide();
+    $("section.menu").show();
+
+    //contagem de tempo
+      contagemDeTempo= setInterval(function(){
+        var conteudoTempo =parceInt($("h2.tempo span").text()) ;
+        var soma = conteudoTempo + 1;
+        $("h2.tempo span").text(soma)
+      },1000);
+  });
+
+  // voltar para a tela 1
+    $("section.pontuacao button.btn-primary").on("click", function(){
+    $("section").hide();
+    $("section.inicio").show();
+    $("section.jogo span.tempo").text(0) ;
+    $("section.jogo span.pontos").text(0) ;
+    });
+
+    
+   
+  
+
+    
+      
+  
+
+  </script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
